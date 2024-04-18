@@ -31,13 +31,14 @@ class Story {
 
   /** Parses hostname out of URL and returns it.
    *
-   * http://foo.com/bar => foo.com
-   *
+   * http://
+   *foo.com/bar => foo.com
    */
 
   getHostName() {
     // FIXME: complete this function!
-    return "hostname.com";  }
+    return "hostname.com";
+  }
 }
 
 /******************************************************************************
@@ -83,8 +84,27 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
-    // UNIMPLEMENTED: complete this function!
+  async addStory(user, newStory) {
+    //TODO: better name
+    const bodyObject = {
+      token: user.loginToken,
+      story: newStory
+    };
+
+    const response = await fetch(`${BASE_URL}/stories`,
+      {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bodyObject)
+      }
+    );
+    //TODO: make better names
+    const storyData = await response.json();
+    const newStory = storyData.story;
+
+    return new Story(newStory);
   }
 }
 
@@ -144,7 +164,7 @@ class User {
   }
 
   /** Login in user with API, make User instance & return it.
-  
+
 
      * - username: an existing user's username
      * - password: an existing user's password
