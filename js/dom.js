@@ -16,3 +16,5 @@ export const $navAllStories = document.querySelector("#Nav-all");
 
 // Query selectors written by us
 export const $navSubmit = document.querySelector('#Nav-submit');
+
+export const $storySubmitForm = document.querySelector('#StorySubmitForm');
