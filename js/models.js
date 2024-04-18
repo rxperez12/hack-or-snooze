@@ -102,9 +102,9 @@ class StoryList {
     );
     //TODO: make better names
     const storyData = await response.json();
-    const newStory = storyData.story;
+    const submittedStory = storyData.story;
 
-    return new Story(newStory);
+    return new Story(submittedStory);
   }
 }
 

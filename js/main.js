@@ -4,7 +4,7 @@ import {
   $allStoriesList,
 } from "./dom";
 
-import { fetchAndShowStoriesOnStart } from "./stories";
+import { fetchAndShowStoriesOnStart, currStoryList } from "./stories";
 import {
   checkForRememberedUser,
   currentUser,
@@ -30,19 +30,27 @@ export function hidePageComponents() {
 export async function start() {
   console.debug("start");
 
+  console.log("currentUser=", currentUser);
+
   // "Remember logged-in user" and log in, if credentials in localStorage
   await checkForRememberedUser();
   await fetchAndShowStoriesOnStart();
 
   // if we got a logged-in user
   if (currentUser) await updateUIOnUserLogin();
+
+  let newStory = await currStoryList.addStory(currentUser,
+    { title: "Test", author: "Me", url: "http://meow.com" });
+
+  console.log("newStory=", newStory);
+  console.log("currentUser=", currentUser);
 }
 
 // Once the DOM is entirely loaded, begin the app
 
 console.warn(
   "HEY STUDENT: This program sends many debug messages to" +
-    " the console. If you don't see the message 'start' below this, you're not" +
-    " seeing those helpful debug messages. In your browser console, click on" +
-    " menu 'Default Levels' and add Verbose",
+  " the console. If you don't see the message 'start' below this, you're not" +
+  " seeing those helpful debug messages. In your browser console, click on" +
+  " menu 'Default Levels' and add Verbose",
 );
