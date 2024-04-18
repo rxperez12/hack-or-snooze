@@ -13,3 +13,6 @@ export const $navLogin = document.querySelector("#Nav-login");
 export const $navUserProfile = document.querySelector("#Nav-userProfile");
 export const $navLogOut = document.querySelector("#Nav-logout");
 export const $navAllStories = document.querySelector("#Nav-all");
+
+// Query selectors written by us
+export const $navSubmit = document.querySelector('#Nav-submit');
