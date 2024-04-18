@@ -4,7 +4,7 @@ import {
   $allStoriesList,
 } from "./dom";
 
-import { fetchAndShowStoriesOnStart, currStoryList } from "./stories";
+import { fetchAndShowStoriesOnStart } from "./stories"; //add currStoryList for test
 import {
   checkForRememberedUser,
   currentUser,
@@ -39,11 +39,12 @@ export async function start() {
   // if we got a logged-in user
   if (currentUser) await updateUIOnUserLogin();
 
-  let newStory = await currStoryList.addStory(currentUser,
-    { title: "Test", author: "Me", url: "http://meow.com" });
+  //TEST FOR NEW STORY
+  // let newStory = await currStoryList.addStory(currentUser,
+  //   { title: "Test", author: "Me", url: "http://meow.com" });
 
-  console.log("newStory=", newStory);
-  console.log("currentUser=", currentUser);
+  // console.log("newStory=", newStory);
+  // console.log("currentUser=", currentUser);
 }
 
 // Once the DOM is entirely loaded, begin the app
