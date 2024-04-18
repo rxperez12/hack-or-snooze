@@ -9,6 +9,9 @@ import {
   $navUserProfile,
   $loginForm,
   $signupForm,
+  $navSubmit,
+  $storySubmitForm
+
 } from "./dom";
 import { hidePageComponents } from "./main";
 import {
@@ -50,3 +53,13 @@ export function updateNavOnLogin() {
   $navUserProfile.classList.remove("d-none");
   $navUserProfile.querySelector("a").innerHTML = `${currentUser.username}`;
 }
+
+/** Show story submit form  on click on "Submit" */
+export function navSubmitClick(evt) {
+  console.debug("navSubmitClick", evt);
+
+  $storySubmitForm.classList.remove('d-none');
+  hidePageComponents();
+}
+
+$navSubmit.addEventListener('click', navSubmitClick);

@@ -45,6 +45,7 @@ export async function start() {
 
   // console.log("newStory=", newStory);
   // console.log("currentUser=", currentUser);
+
 }
 
 // Once the DOM is entirely loaded, begin the app
