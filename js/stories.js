@@ -73,3 +73,18 @@ export async function fetchAndShowStoriesOnStart() {
 
   putStoriesOnPage();
 }
+
+
+/**
+ *Get data from Submit story form and add it to website. After, displays new
+ * articles on the page
+ */
+async function handleSubmitStory(evt) {
+  evt.preventDefault();
+  // get form data
+  // use form data to call addStories
+  //  communicates to server, add story to storylist and returns story object
+  // update articles on page to show new story
+}
+
+// add event listener that uses handle submit story
