@@ -233,7 +233,7 @@ class User {
   async addFavorite(story) {
     console.debug('addFavorite', 'input: ', story);
     let data = null;
-    if (!(this.favorites.includes(story))) {
+    if (!(this.favorites.includes(story))) { // NOT WORKING
       this.favorites.push(story);
 
       const bodyDataForAPI = {
@@ -241,7 +241,7 @@ class User {
       };
 
       const response = await fetch(
-        `${BASE_URL}/stories/${this.username}/favorites/${story.storyId}`,
+        `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
         {
           method: "POST",
           headers: {
