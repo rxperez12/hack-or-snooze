@@ -226,6 +226,10 @@ class User {
   // url is base and /stories/`{username}`\favorites\storyId
   // API response returns new favorites list
 
+  /** Given a Story instance, send POST request to API with favorited story.
+   *  Use data returned from API to updated user instance's list favorites.
+   */
+
   async addFavorite(story) {
     console.debug('addFavorite', 'input: ', story);
     let data = null;
