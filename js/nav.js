@@ -69,7 +69,6 @@ $navSubmit.addEventListener('click', navSubmitClick);
 
 function navFavoritesClick(evt) {
   console.debug("navFavoritesClick", evt);
-
   hidePageComponents();
   $favoritesSection.classList.remove('d-none');
 

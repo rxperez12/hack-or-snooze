@@ -108,3 +108,15 @@ export async function handleSubmitStory(evt) {
 
 // add event listener that uses handle submit story
 $storySubmitForm.addEventListener("submit", handleSubmitStory);
+
+/**
+ * Take in a user favorite stories and create HTML markup of all favorite stories
+ */
+export function generateFavoriteStoryMarkup(stories) {
+  let $favoriteStories = document.createElement("ol");
+  for (const story of stories) {
+    const $listElement = generateStoryMarkup(story); //TODO: Doesn't currently show star
+    $favoriteStories.appendChild($listElement);
+  }
+  return $favoriteStories;
+}
