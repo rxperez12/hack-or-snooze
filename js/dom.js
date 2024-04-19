@@ -18,3 +18,5 @@ export const $navAllStories = document.querySelector("#Nav-all");
 export const $navSubmit = document.querySelector('#Nav-submit');
 
 export const $storySubmitForm = document.querySelector('#StorySubmitForm');
+export const $navFavorites = document.querySelector('#Nav-favorites');
+export const $favoritesSection = document.querySelector('#Favorites-section');
