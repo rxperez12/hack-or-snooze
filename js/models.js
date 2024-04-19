@@ -218,13 +218,6 @@ class User {
     );
   }
 
-  // TODO: Write a method for favoriting a story; move up on doc if needed
-  // take a story instance and add it to the user's story favorites list
-  // extract storyId from story instance
-  // make API POST request: sending story id to API
-  // needs token in body
-  // url is base and /stories/`{username}`\favorites\storyId
-  // API response returns new favorites list
 
   /** Given a Story instance, send POST request to API with favorited story.
    *  Once data is added to API, update user instance's list of favorites.
@@ -255,8 +248,10 @@ class User {
 
       const userDocumentFromAPI = await response.json();
 
+      console.log('userDoc from Added Favorite:', userDocumentFromAPI);
+
       if ("message" in userDocumentFromAPI) {
-        if (userDocumentFromAPI.message === "Favorite Added Successfully!") {
+        if (userDocumentFromAPI.message === "Favorite Added!") {
           this.favorites.push(story);
           //TODO: Use return for adding to DOM with styling: return story;
         }
@@ -270,6 +265,46 @@ class User {
   // if present, remove
   // make API DELETE request: sending
 
+  /** Given a Story instance, send POST request to API with favorited story.
+   *  Once data is added to API, update user instance's list of favorites.
+   *  If already present in Favorites, a story cannot be added again. TODO: change
+   */
+  async removeFavorite(story) {
+    console.debug('removeFavorite', 'input: ', story);
+
+    const favoritesIds = this.favorites.map(story => story.storyId);
+
+    if (favoritesIds.includes(story.storyId)) {
+
+      const bodyDataForAPI = {
+        token: this.loginToken
+      };
+
+      const response = await fetch(
+        `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+        {
+          method: "DELETE",
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify(bodyDataForAPI)
+        }
+      );
+
+      const userDocumentFromAPI = await response.json();
+
+      console.log('userDoc from removeFavorite:', userDocumentFromAPI);
+
+      if ("message" in userDocumentFromAPI) {
+        if (userDocumentFromAPI.message === "Favorite Removed!") {
+          this.favorites = this.favorites
+            .filter(favoriteStory => favoriteStory.storyId !== story.storyId);
+
+          console.log('local favorites post delete: ', this.favorites);
+        }
+      }
+    }
+  }
 
 }
 

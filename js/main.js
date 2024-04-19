@@ -59,9 +59,11 @@ export async function start() {
   //TEST FOR ADD FAVORITE
   let storyList = await StoryList.getStories();
   let stories = storyList.stories;
-  console.log('story example: ', stories[0]);
-  console.log('did this work: - should have data here', await currentUser.addFavorite(stories[0]));
+
+  console.log('added favorite:', await currentUser.addFavorite(stories[0]));
   console.log('user favorites saved locally: ', currentUser.favorites);
+
+  console.log('removed favorite: ', await currentUser.removeFavorite(stories[0]));
 
 }
 
