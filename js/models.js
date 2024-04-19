@@ -227,14 +227,16 @@ class User {
   // API response returns new favorites list
 
   /** Given a Story instance, send POST request to API with favorited story.
-   *  Use data returned from API to updated user instance's list favorites.
+   *  Once data is added to API, update user instance's list of favorites.
+   *  If already present in Favorites, a story cannot be added again.
    */
 
   async addFavorite(story) {
     console.debug('addFavorite', 'input: ', story);
-    let data = null;
-    if (!(this.favorites.includes(story))) { // NOT WORKING
-      this.favorites.push(story);
+
+    const favoritesIds = this.favorites.map(story => story.storyId);
+
+    if (!favoritesIds.includes(story.storyId)) {
 
       const bodyDataForAPI = {
         token: this.loginToken
@@ -251,10 +253,15 @@ class User {
         }
       );
 
-      data = await response.json();
-    }
+      const userDocumentFromAPI = await response.json();
 
-    return data;
+      if ("message" in userDocumentFromAPI) {
+        if (userDocumentFromAPI.message === "Favorite Added Successfully!") {
+          this.favorites.push(story);
+          //TODO: Use return for adding to DOM with styling: return story;
+        }
+      }
+    }
   }
 
   // TODO: Write a method for un-favoriting a story; move up on doc if needed
