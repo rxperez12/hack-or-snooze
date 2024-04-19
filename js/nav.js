@@ -10,8 +10,9 @@ import {
   $loginForm,
   $signupForm,
   $navSubmit,
-  $storySubmitForm
-
+  $storySubmitForm,
+  $navFavorites,
+  $favoritesSection
 } from "./dom";
 import { hidePageComponents } from "./main";
 import {
@@ -63,3 +64,16 @@ export function navSubmitClick(evt) {
 }
 
 $navSubmit.addEventListener('click', navSubmitClick);
+
+/** Show logged-in user's favorited stories on "Favorites" click. */
+
+function navFavoritesClick(evt) {
+  console.debug("navFavoritesClick", evt);
+
+  hidePageComponents();
+  $favoritesSection.classList.remove('d-none');
+
+}
+
+
+$navFavorites.addEventListener('click', navFavoritesClick);
