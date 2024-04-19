@@ -56,14 +56,14 @@ export async function start() {
   // console.log("newStory=", newStory);
   // console.log("currentUser=", currentUser);
 
-  //TEST FOR ADD FAVORITE
-  let storyList = await StoryList.getStories();
-  let stories = storyList.stories;
+  //TEST FOR ADD FAVORITE AND REMOVE FAVORITE
+  // let storyList = await StoryList.getStories();
+  // let stories = storyList.stories;
 
-  console.log('added favorite:', await currentUser.addFavorite(stories[0]));
-  console.log('user favorites saved locally: ', currentUser.favorites);
+  // console.log('added favorite:', await currentUser.addFavorite(stories[0]));
+  // console.log('user favorites saved locally: ', currentUser.favorites);
 
-  console.log('removed favorite: ', await currentUser.removeFavorite(stories[0]));
+  // console.log('removed favorite: ', await currentUser.removeFavorite(stories[0]));
 
 }
 
