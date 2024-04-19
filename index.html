@@ -44,10 +44,10 @@
           <li id="Nav-submit" class="nav-item">
             <a class="nav-link" href="#">Submit</a>
           </li>
-          <li id="Nav-favorites" class="nav-item d-none">
+          <li id="Nav-favorites" class="nav-item">
             <a class="nav-link" href="#">Favorites</a>
           </li>
-          <li id="Nav-myStories" class="nav-item d-none">
+          <li id="Nav-myStories" class="nav-item">
             <a class="nav-link" href="#">My Stories</a>
           </li>
         </ul>
@@ -72,6 +72,13 @@
 
     <!-- area for stories (all stories, user stories, favorites) -->
     <section class="Stories">
+
+      <div id="Favorites-section" class="d-none">
+        <div id="No-favorites-alert" class="alert alert-warning">No favorites yet!</div>
+        <ol id="Favorites-list" class="d-none">
+          <!-- will be populated with li elements -->
+        </ol>
+      </div>
 
       <!-- Form for submitting a story -->
       <form id="StorySubmitForm" class="mb-2 d-none">
