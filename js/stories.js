@@ -99,8 +99,9 @@ export async function handleSubmitStory(evt) {
 
   await currStoryList.addStory(currentUser, submittedStoryData);
 
-  currStoryList = await StoryList.getStories();
-
+  // currStoryList = await StoryList.getStories();
+  // TODO: can save currStoryList.addStory variable, and prepend that using
+  //generateStoryMarkup to the beginning of Story List part of the DOM
   putStoriesOnPage();
   $storySubmitForm.classList.add('d-none');
 }

@@ -35,7 +35,7 @@ class Story {
    *foo.com/bar => foo.com
    */
 
-  getHostName() {
+  getHostName() { // DO THIS!!!!
     // FIXME: complete this function!
     return "hostname.com";
   }
@@ -76,7 +76,7 @@ class StoryList {
   }
 
   /** Send story data to API, make a Story instance, and add it as the first
-   * item to this StoryList.
+   * item to this StoryList. TODO: not adding it to the instance for this story list
    *
    * - user - the current instance of User who will post the story
    * - obj of {title, author, url}
@@ -103,7 +103,9 @@ class StoryList {
 
     const addedStoryData = await response.json();
 
-    return new Story(addedStoryData.story);
+    const newStoryInstance = new Story(addedStoryData.story);
+    this.stories.unshift(newStoryInstance);
+    return newStoryInstance;
   }
 }
 
