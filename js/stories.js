@@ -2,6 +2,7 @@
 import {
   $allStoriesList,
   $storiesLoadingMsg,
+  $storySubmitForm
 } from "./dom";
 import { Story, StoryList } from "./models";
 import { currentUser } from "./user";
@@ -76,15 +77,29 @@ export async function fetchAndShowStoriesOnStart() {
 
 
 /**
- *Get data from Submit story form and add it to website. After, displays new
- * articles on the page
+ * Get data from Submit story form and add it to website.
+ * After, display story list with new articles added on the page.
  */
+
 async function handleSubmitStory(evt) {
   evt.preventDefault();
-  // get form data
-  // use form data to call addStories
-  //  communicates to server, add story to storylist and returns story object
+
+  //TODO: Use qs function like here? const password = qs("#SignupForm-password").value;
+  const submittedStoryAuthor = document.querySelector("#SubmitStoryForm-author").value;
+  const submittedStoryTitle = document.querySelector("#SubmitStoryForm-title").value;
+  const submittedStoryUrl = document.querySelector("#SubmitStoryForm-url").value;
+
+  const submittedStoryData = {
+    author: submittedStoryAuthor,
+    title: submittedStoryTitle,
+    url: submittedStoryUrl
+  };
+
+  // communicates to server, add story to storylist and returns story object
+  currStoryList.addStories(currentUser, submittedStoryData);
+
   // update articles on page to show new story
 }
 
 // add event listener that uses handle submit story
+$storySubmitForm.addEventListener("submit", handleSubmitStory);
