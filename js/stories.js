@@ -81,13 +81,15 @@ export async function fetchAndShowStoriesOnStart() {
  * After, display story list with new articles added on the page.
  */
 
-async function handleSubmitStory(evt) {
+export async function handleSubmitStory(evt) {
+  console.debug("handleSubmitStory", evt);
   evt.preventDefault();
 
-  //TODO: Use qs function like here? const password = qs("#SignupForm-password").value;
-  const submittedStoryAuthor = document.querySelector("#SubmitStoryForm-author").value;
-  const submittedStoryTitle = document.querySelector("#SubmitStoryForm-title").value;
-  const submittedStoryUrl = document.querySelector("#SubmitStoryForm-url").value;
+  const qs = $storySubmitForm.querySelector.bind($storySubmitForm);
+
+  const submittedStoryAuthor = qs("#StorySubmitForm-author").value;
+  const submittedStoryTitle = qs("#StorySubmitForm-title").value;
+  const submittedStoryUrl = qs("#StorySubmitForm-url").value;
 
   const submittedStoryData = {
     author: submittedStoryAuthor,
@@ -95,10 +97,12 @@ async function handleSubmitStory(evt) {
     url: submittedStoryUrl
   };
 
-  // communicates to server, add story to storylist and returns story object
-  currStoryList.addStories(currentUser, submittedStoryData);
+  await currStoryList.addStory(currentUser, submittedStoryData);
 
-  // update articles on page to show new story
+  currStoryList = await StoryList.getStories();
+
+  putStoriesOnPage();
+  $storySubmitForm.classList.add('d-none');
 }
 
 // add event listener that uses handle submit story
