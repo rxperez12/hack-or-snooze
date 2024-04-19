@@ -33,11 +33,12 @@ class Story {
    *
    * http://
    *foo.com/bar => foo.com
+   www.foo.com => www.foo.com
    */
 
-  getHostName() { // DO THIS!!!!
-    // FIXME: complete this function!
-    return "hostname.com";
+  getHostName() {
+    let currentUrl = new URL(this.url);
+    return currentUrl.hostname;
   }
 }
 
@@ -76,7 +77,7 @@ class StoryList {
   }
 
   /** Send story data to API, make a Story instance, and add it as the first
-   * item to this StoryList. TODO: not adding it to the instance for this story list
+   * item to this StoryList.
    *
    * - user - the current instance of User who will post the story
    * - obj of {title, author, url}
@@ -224,6 +225,33 @@ class User {
   // needs token in body
   // url is base and /stories/`{username}`\favorites\storyId
   // API response returns new favorites list
+
+  async addFavorite(story) {
+    console.debug('addFavorite', 'input: ', story);
+    let data = null;
+    if (!(this.favorites.includes(story))) {
+      this.favorites.push(story);
+
+      const bodyDataForAPI = {
+        token: this.loginToken
+      };
+
+      const response = await fetch(
+        `${BASE_URL}/stories/${this.username}/favorites/${story.storyId}`,
+        {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          body: JSON.stringify(bodyDataForAPI)
+        }
+      );
+
+      data = await response.json();
+    }
+
+    return data;
+  }
 
   // TODO: Write a method for un-favoriting a story; move up on doc if needed
   // take a story instance
