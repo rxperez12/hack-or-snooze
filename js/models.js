@@ -85,8 +85,8 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    //TODO: better name
-    const bodyObject = {
+
+    const newStoryInfoForAPI = {
       token: user.loginToken,
       story: newStory
     };
@@ -97,14 +97,13 @@ class StoryList {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(bodyObject)
+        body: JSON.stringify(newStoryInfoForAPI)
       }
     );
-    //TODO: make better names
-    const storyData = await response.json();
-    const submittedStory = storyData.story;
 
-    return new Story(submittedStory);
+    const addedStoryData = await response.json();
+
+    return new Story(addedStoryData.story);
   }
 }
 
@@ -215,6 +214,22 @@ class User {
       token,
     );
   }
+
+  // TODO: Write a method for favoriting a story; move up on doc if needed
+  // take a story instance and add it to the user's story favorites list
+  // extract storyId from story instance
+  // make API POST request: sending story id to API
+  // needs token in body
+  // url is base and /stories/`{username}`\favorites\storyId
+  // API response returns new favorites list
+
+  // TODO: Write a method for un-favoriting a story; move up on doc if needed
+  // take a story instance
+  // look for above in favorites array
+  // if present, remove
+  // make API DELETE request: sending
+
+
 }
 
 export { Story, StoryList, User, BASE_URL };
