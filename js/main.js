@@ -4,7 +4,11 @@ import {
   $allStoriesList,
 } from "./dom";
 
-import { fetchAndShowStoriesOnStart } from "./stories"; //add currStoryList for test
+import {
+  fetchAndShowStoriesOnStart,
+  generateStoryMarkup,
+  generateFavoriteStoryMarkup
+} from "./stories"; //add currStoryList for test
 import {
   checkForRememberedUser,
   currentUser,
