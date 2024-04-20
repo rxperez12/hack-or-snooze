@@ -228,9 +228,9 @@ class User {
     console.debug('addFavorite', 'input: ', story);
 
     const favoritesIds = this.favorites.map(story => story.storyId);
-
-    if (!favoritesIds.includes(story.storyId)) {
-
+    if (favoritesIds.includes(story.storyId)) return;
+    if (!favoritesIds.includes(story.storyId)) { //remove if condition with all the code
+      //Can use find and just pass in a callback function
       const bodyDataForAPI = {
         token: this.loginToken
       };
@@ -246,7 +246,7 @@ class User {
         }
       );
 
-      const userDocumentFromAPI = await response.json();
+      const userDocumentFromAPI = await response.json(); //userData
 
       console.log('userDoc from Added Favorite:', userDocumentFromAPI);
 

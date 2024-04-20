@@ -18,7 +18,7 @@ import { hidePageComponents } from "./main";
 import {
   putStoriesOnPage,
 } from "./stories";
-import { currentUser } from "./user";
+import { currentUser, updateUIOnFavoritesClick } from "./user";
 
 /** Show main list of all stories when click site name */
 
@@ -70,6 +70,7 @@ $navSubmit.addEventListener('click', navSubmitClick);
 function navFavoritesClick(evt) {
   console.debug("navFavoritesClick", evt);
   hidePageComponents();
+  updateUIOnFavoritesClick();
   $favoritesSection.classList.remove('d-none');
 
 }

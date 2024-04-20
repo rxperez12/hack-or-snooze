@@ -172,7 +172,7 @@ export async function updateUIOnUserLogin() {
 
 //todo: CALL FUNCTION
 export function updateUIOnFavoritesClick() {
-
+  //TODO: clear innerHTML before adding ol data
   const $userFavoritesList = generateFavoriteStoryMarkup(currentUser.favorites);
 
   const $favoritesSection = document.querySelector("#Favorites-section");
