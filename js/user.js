@@ -9,7 +9,7 @@ import {
   $signupForm,
 } from "./dom";
 import { hidePageComponents } from "./main";
-import { putStoriesOnPage } from "./stories";
+import { putStoriesOnPage, generateFavoriteStoryMarkup } from "./stories";
 import { updateNavOnLogin } from "./nav";
 
 export let currentUser;
@@ -161,4 +161,24 @@ export async function updateUIOnUserLogin() {
   $allStoriesList.classList.remove("d-none");
 
   updateNavOnLogin();
+}
+
+
+/** When a logged-in user clicks on Favorites:
+ *
+ * - generate story mark-up for user's favorites
+ * - show favorite stories list
+ */
+
+//todo: CALL FUNCTION
+export function updateUIOnFavoritesClick() {
+
+  const $userFavoritesList = generateFavoriteStoryMarkup(currentUser.favorites);
+
+  const $favoritesSection = document.querySelector("#Favorites-section");
+
+  $favoritesSection.appendChild($userFavoritesList);
+
+  document.querySelector('#No-favorites-alert').classList.add('d-none');
+
 }
